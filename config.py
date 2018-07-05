@@ -9,12 +9,16 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'mysql://root:wangjian@localhost/info666'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+
+    # 定义redis的主机和port
+    REDIS_HOST = '127.0.0.1'
+    REDIS_PORT = 6379
     # 配置状态保持存储的session信息
     SESSION_TYPE = 'redis'
     # 配置session的签名
     SESSION_USE_SIGNER = True
     # 构造redis的实例
-    SESSON_REDIS = StrictRedis(host='127.0.01', port=6379)
+    SESSION_REDIS = StrictRedis(host=REDIS_HOST, port=REDIS_PORT)
     # 配置session的过期时间
     PERMANENT_SESSION_LIFETIME = 86400
 
