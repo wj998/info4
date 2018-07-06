@@ -7,9 +7,15 @@ from flask import Flask, session
 from flask_sqlalchemy import SQLAlchemy
 # 导入扩展 flask_session
 from flask_session import Session
-
+# 导入配置文件中的字典
+from config import config, Config
+# 导入redis
+from redis import StrictRedis
 # 实例化sqlalchemy对象
 db = SQLAlchemy()
+# 实例化redis数据库对象,用来储存和业务逻辑相关的数据,比如图片验证码,decode_response把redis数据类型转成字符串
+redis_store = StrictRedis(host=Config.REDIS_PORT, port=Config.REDIS_PORT, decode_responses=True)
+
 
 # 设置日志的记录等级
 logging.basicConfig(level=logging.DEBUG) # 调试debug级
